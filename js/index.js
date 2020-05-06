@@ -49,12 +49,12 @@ let ctaBtn = document.querySelector('.cta-text button');
 let ctaIMG = document.getElementById('cta-img');
 
 
-
+//--------------------------Functions--------------------------------//
 function prependNav(type, content){
-  let newNav = document.createElement(`${type}`);
-  newNav.textContent = `${content}`;
-  newNav.setAttribute('href', '#');
-  additionalNav.prepend(newNav);
+  let newNav = document.createElement(`${type}`); //grab given type ex. nav/main-content
+  newNav.textContent = `${content}`; //set text for new content
+  newNav.setAttribute('href', '#'); //set <a> base attributes
+  additionalNav.prepend(newNav); // add to start of the nav
   return newNav;
 }
 
@@ -67,6 +67,8 @@ function prependNav(type, content){
 let fillNav = fillInfo('nav', nav);
 let homeNav = prependNav('a', 'Home');
 let digitalTimer = prependNav('a', 'Timer')
+
+digitalTimer.setAttribute('href', 'stretch-assignment\\digital_timer\\index.html')
 
 // nav[0].textContent = siteContent['nav']['nav-item-1']; 
 // nav[1].textContent = siteContent['nav']['nav-item-2'];
