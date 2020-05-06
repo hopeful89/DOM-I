@@ -1,22 +1,31 @@
 const timer = document.querySelectorAll('.digit');
 const timerEnd = document.querySelector('.digits');
-let startBtn = appendBtn('button', 'Start', 'setInterval(myTimer(), 10)');
-// let resetBtn = appendBtn('button', 'Reset', 'resetTimer()');
+let interval = setInterval(myTimer(), 10);
+let startBtn = appendBtn('button', 'Start');
+let resetBtn = appendBtn('button', 'Reset');
+startBtn.setAttribute('onclick', `interval = setInterval(myTimer(), 10)`);
+resetBtn.setAttribute('onclick', 'resetTimer()')
+
+
+function resetVar(){
+    timer[4].textContent = 0;
+    timer[3].textContent = 0;
+    timer[1].textContent = 0;
+    timer[0].textContent = 0;
+}
 
 
 function appendBtn(type, content, func){
-    let newBtn = document.createElement(`${type}`); //grab given type ex. nav/main-content
-    newBtn.textContent = `${content}`; //set text for new content
+    let newBtn = document.createElement(`${type}`);
+    newBtn.textContent = `${content}`; 
     newBtn.style.display = 'block';
     newBtn.style.width = '100%';
-    newBtn.setAttribute("onClick", func)
-    timerEnd.appendChild(newBtn); // add to start of the nav
+    timerEnd.appendChild(newBtn); 
     return newBtn;
   }
 
 function timerLogic(){
-    startBtn.style.display = 'none';
-    timerEnd.classList.remove('redDigit')
+    startBtn.disabled = true;
     if(timer[0].textContent < 1){
         if(timer[4].textContent < 10 || timer[4].textContent === '-' ){
             timer[4].textContent++;
@@ -35,23 +44,21 @@ function timerLogic(){
         }
     }else {
         timerEnd.classList.add('redDigit');
-        startBtn.style.display = 'block';
+        
     } 
 }
 
 function myTimer(){
-    timer[4].textContent = 0;
-    timer[3].textContent = 0;
-    timer[1].textContent = 0;
-    timer[0].textContent = 0;
+    resetVar();
     return timerLogic;
 }
 
 function resetTimer() {
-    clearInterval(startBtn);
-    clearInterval(myTimer);
-    clearInterval(myTimer());
+    resetVar();
+    clearInterval(interval);
+    startBtn.disabled = false;
     timerEnd.classList.remove('redDigit')
+    
 }
 
 
