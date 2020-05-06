@@ -42,18 +42,38 @@ let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
 
 //--------------------------Navigation-----------------------------//
-
+let additionalNav = document.querySelector('nav');
 let nav = document.querySelectorAll('nav a');
 let ctaH1 = document.querySelector('.cta-text h1');
 let ctaBtn = document.querySelector('.cta-text button');
 let ctaIMG = document.getElementById('cta-img');
 
-nav[0].textContent = siteContent['nav']['nav-item-1']; 
-nav[1].textContent = siteContent['nav']['nav-item-2'];
-nav[2].textContent = siteContent['nav']['nav-item-3'];
-nav[3].textContent = siteContent['nav']['nav-item-4'];
-nav[4].textContent = siteContent['nav']['nav-item-5'];
-nav[5].textContent = siteContent['nav']['nav-item-6'];
+
+
+function prependNav(type, content){
+  let newNav = document.createElement(`${type}`);
+  newNav.textContent = `${content}`;
+  newNav.setAttribute('href', '#');
+  additionalNav.prepend(newNav);
+  return newNav;
+}
+
+ function fillInfo(type, variable) {
+  const sitePortion = Object.entries(siteContent[`${type}`]);
+   for(let i = 0; i < sitePortion.length - 1; i++){
+    variable[i].text = sitePortion[i][1];
+   }
+  }
+let fillNav = fillInfo('nav', nav);
+let homeNav = prependNav('a', 'Home');
+let digitalTimer = prependNav('a', 'Timer')
+
+// nav[0].textContent = siteContent['nav']['nav-item-1']; 
+// nav[1].textContent = siteContent['nav']['nav-item-2'];
+// nav[2].textContent = siteContent['nav']['nav-item-3'];
+// nav[3].textContent = siteContent['nav']['nav-item-4'];
+// nav[4].textContent = siteContent['nav']['nav-item-5'];
+// nav[5].textContent = siteContent['nav']['nav-item-6'];
 
 
 ctaH1.textContent = 'DOM' + '\n' + 'IS' + '\n'  + 'AWESOME';
@@ -68,6 +88,7 @@ ctaIMG.setAttribute('src', siteContent['cta']['img-src']);
 
 let textHeaders = document.querySelectorAll('.text-content h4');
 let topText = document.querySelectorAll('.text-content p');
+
 
 textHeaders[0].textContent = siteContent['main-content']['features-h4']
 topText[0].textContent = siteContent['main-content']['features-content']
