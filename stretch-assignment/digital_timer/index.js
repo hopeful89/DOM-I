@@ -1,11 +1,20 @@
 const timer = document.querySelectorAll('.digit');
 const timerEnd = document.querySelector('.digits');
-let interval = setInterval(myTimer(), 10);
-let startBtn = appendBtn('button', 'Start');
-let resetBtn = appendBtn('button', 'Reset');
+let interval;
+
+function appendBtn(type, content){
+    let newBtn = document.createElement(`${type}`);
+    newBtn.textContent = `${content}`; 
+    newBtn.style.display = 'block';
+    newBtn.style.width = '100%';
+    timerEnd.appendChild(newBtn); 
+    return newBtn;
+}
+
+const startBtn = appendBtn('button', 'Start');
+const resetBtn = appendBtn('button', 'Reset');
 startBtn.setAttribute('onclick', `interval = setInterval(myTimer(), 10)`);
 resetBtn.setAttribute('onclick', 'resetTimer()')
-
 
 function resetVar(){
     timer[4].textContent = 0;
@@ -14,15 +23,11 @@ function resetVar(){
     timer[0].textContent = 0;
 }
 
+function myTimer(){
+    resetVar();
+    return timerLogic;
+}
 
-function appendBtn(type, content, func){
-    let newBtn = document.createElement(`${type}`);
-    newBtn.textContent = `${content}`; 
-    newBtn.style.display = 'block';
-    newBtn.style.width = '100%';
-    timerEnd.appendChild(newBtn); 
-    return newBtn;
-  }
 
 function timerLogic(){
     startBtn.disabled = true;
@@ -43,24 +48,16 @@ function timerLogic(){
             }
         }
     }else {
-        timerEnd.classList.add('redDigit');
-        
+        timerEnd.classList.add('redDigit');  
     } 
 }
 
-function myTimer(){
-    resetVar();
-    return timerLogic;
-}
 
 function resetTimer() {
     resetVar();
     clearInterval(interval);
     startBtn.disabled = false;
     timerEnd.classList.remove('redDigit')
-    
 }
 
 
-// <button onclick="myFunction()">Click me</button>
-// setInterval(myTimer(), 10);

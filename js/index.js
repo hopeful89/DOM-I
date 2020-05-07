@@ -41,6 +41,7 @@
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
 
+
 //--------------------------Navigation-----------------------------//
 let additionalNav = document.querySelector('nav');
 let nav = document.querySelectorAll('nav a');
@@ -58,25 +59,17 @@ function prependNav(type, content){
   return newNav;
 }
 
- function fillInfo(type, variable) {
+function fillInfo(type, variable) {
   const sitePortion = Object.entries(siteContent[`${type}`]);
-   for(let i = 0; i < sitePortion.length - 1; i++){
-    variable[i].text = sitePortion[i][1];
-   }
+  for(let i = 0; i < sitePortion.length - 1; i++){
+  variable[i].text = sitePortion[i][1];
   }
+}
 let fillNav = fillInfo('nav', nav);
 let homeNav = prependNav('a', 'Home');
 let digitalTimer = prependNav('a', 'Timer')
 
 digitalTimer.setAttribute('href', 'stretch-assignment\\digital_timer\\index.html')
-
-// nav[0].textContent = siteContent['nav']['nav-item-1']; 
-// nav[1].textContent = siteContent['nav']['nav-item-2'];
-// nav[2].textContent = siteContent['nav']['nav-item-3'];
-// nav[3].textContent = siteContent['nav']['nav-item-4'];
-// nav[4].textContent = siteContent['nav']['nav-item-5'];
-// nav[5].textContent = siteContent['nav']['nav-item-6'];
-
 
 ctaH1.textContent = 'DOM' + '\n' + 'IS' + '\n'  + 'AWESOME';
 ctaH1.style.whiteSpace = 'pre';
@@ -90,6 +83,7 @@ ctaIMG.setAttribute('src', siteContent['cta']['img-src']);
 
 let textHeaders = document.querySelectorAll('.text-content h4');
 let topText = document.querySelectorAll('.text-content p');
+let middleImg = document.getElementById('middle-img');
 
 
 textHeaders[0].textContent = siteContent['main-content']['features-h4']
@@ -99,10 +93,8 @@ textHeaders[1].textContent = siteContent['main-content']['about-h4']
 topText[1].textContent = siteContent['main-content']['about-content']
 
 //------------------------------Middle Img---------------------------//
-let middleImg = document.getElementById('middle-img');
 
 middleImg.setAttribute('src', siteContent['main-content']['middle-img-src'])
-
 
 //-----------------------------Bottom Content-----------------------//
 
